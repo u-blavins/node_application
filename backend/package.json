@@ -1,0 +1,23 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Node.js backend for a web application",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/u-blavins/node_application.git"
+  },
+  "author": "u-blavins",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/u-blavins/node_application/issues"
+  },
+  "homepage": "https://github.com/u-blavins/node_application#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
