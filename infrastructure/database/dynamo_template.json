@@ -1,0 +1,12 @@
+{
+    "Version": "2010-09-09",
+    "Description": "CloudFormation template for DynamoDB table",
+    "Resources": {
+        "ApplicationTable": {
+            "Type": "AWS::DynamoDB::Table",
+            "Properties": {
+                "BillingMode": "PROVISIONED"
+            }
+        }
+    }
+}
