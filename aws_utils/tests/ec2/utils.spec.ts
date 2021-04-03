@@ -1,4 +1,7 @@
-import { getEC2Client } from '../../ec2/src/utils'
+import { 
+    getEC2Client,
+    describeRegions
+} from '../../ec2/src/utils'
 
 describe('getEC2Client', () => {
     test('client is instantiated with correct region', async () => {
