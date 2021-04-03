@@ -5,7 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "upload-cft": "ts-node -r dotenv/config upload.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   "homepage": "https://github.com/u-blavins/node_application#readme",
   "dependencies": {
     "@aws-sdk/client-cloudformation": "^3.11.0",
+    "@aws-sdk/client-ec2": "^3.11.0",
     "@aws-sdk/client-s3": "^3.11.0",
     "@aws-sdk/types": "^3.10.0",
     "dotenv": "^8.2.0",
