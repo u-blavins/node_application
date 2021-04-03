@@ -1,8 +1,4 @@
-import {
-    EC2Client,
-    DescribeRegionsCommand,
-    DescribeRegionsCommandInput
-} from '@aws-sdk/client-ec2'
+import { EC2Client, DescribeRegionsCommand, DescribeRegionsCommandInput } from '@aws-sdk/client-ec2'
 
 /**
  * Create a ec2 client with specified region
@@ -10,7 +6,7 @@ import {
  * @param region AWS region to interact with
  * @returns EC2 client to talk directly to AWS
  */
-const getEC2Client = async (region: string = 'eu-west-2') => {
+ const getEC2Client = async (region: string = 'eu-west-2')  => {
     return new EC2Client({ region })
 }
 
@@ -50,20 +46,20 @@ const getAvailableRegions = async (client: EC2Client) => {
     return Array.from(await describeRegions(client), region => region.Endpoint)
 }
 
-(
-    async () => {
-        try {
-            let client = await getEC2Client('eu-west-2')
-            let regions = await describeRegions(client)
-            console.log(regions)
-            let regionNames = await getAvailableRegions(client)
-            console.log(regionNames)
-            let regionEndpoints = await getAvailableEC2RegionEndpoints(client)
-            console.log(regionEndpoints)
-        } catch (e) {
-            console.log(e)
-        }
-    }
-)()
+// (
+//     async () => {
+//         try {
+//             let client = await getEC2Client('eu-west-2')
+//             let regions = await describeRegions(client)
+//             console.log(regions)
+//             let regionNames = await getAvailableRegions(client)
+//             console.log(regionNames)
+//             let regionEndpoints = await getAvailableEC2RegionEndpoints(client)
+//             console.log(regionEndpoints)
+//         } catch (e) {
+//             console.log(e)
+//         }
+//     }
+// )()
 
 export { getEC2Client, describeRegions, getAvailableRegions, getAvailableEC2RegionEndpoints }
