@@ -3,6 +3,7 @@ Repo for developing a web application and with the intention of being deployed t
 
 ## Tutorials
 - (temp)[https://www.robinwieruch.de/node-js-express-tutorial]
+- (Route 53 Routing Policies)[https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy.html]
 
 ## Prerequisites
 To be able to deploy the application, please ensure that the following prerequisites have been installed.

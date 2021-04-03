@@ -1,0 +1,26 @@
+AWSTemplateVersion: "2010-09-09"
+Description: Template for creating an Admin user within an AWS account
+Paremeters:
+  IAMUserName:
+    Type: String
+    Default: AdminUser
+    Description: >
+      This parameter is required for setting up the name of the Admin
+      user if multiple admins are needed then the name would have to
+      change
+Resources:
+  AdminUser:
+    Type: AWS::IAM::User
+    LoginProfile:
+      Password: PLZRESETPASSWORD
+      PasswordResetRequired: true
+    ManagedPolicyArns: 
+      - arn:aws:iam::aws:policy/AdministratorAccess
+    Tags:
+      - Key: Description
+        Value: Admin User used for administrator access within the env
+      - Key: Name
+        Value: !Ref IAMUserName
+    UserName: !Ref IAMUserName
+
+# aws cloudformation create-stack --stack-name iam-{user}-admin-user 

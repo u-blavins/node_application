@@ -1,0 +1,5 @@
+# generic files
+*.env
+
+# npm packages
+package-lock.json
