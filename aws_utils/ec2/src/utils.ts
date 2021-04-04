@@ -1,5 +1,7 @@
 import { EC2Client, DescribeRegionsCommand, DescribeRegionsCommandInput } from '@aws-sdk/client-ec2'
 
+import { isAvailableRegion } from '../../common/src/utils'
+
 /**
  * Create a ec2 client with specified region
  * 
@@ -20,8 +22,7 @@ import { EC2Client, DescribeRegionsCommand, DescribeRegionsCommandInput } from '
  *          Region Name, OptInStatus)
  */
 const describeRegions = async (client: EC2Client, params: DescribeRegionsCommandInput = {}) => {
-    const data = await client.send(new DescribeRegionsCommand(params))
-    return data.Regions
+    return await client.send(new DescribeRegionsCommand(params))
 }
 
 /**
@@ -32,7 +33,8 @@ const describeRegions = async (client: EC2Client, params: DescribeRegionsCommand
  * @returns List of available AWS regions
  */
 const getAvailableRegions = async (client: EC2Client) => {
-    return Array.from(await describeRegions(client), region => region.RegionName)
+    let data = await describeRegions(client, {AllRegions: true})
+    return Array.from(data.Regions, r => r.RegionName)
 }
 
 /**
@@ -43,7 +45,8 @@ const getAvailableRegions = async (client: EC2Client) => {
  * @returns List of available AWS EC2 region endpoints
  */
  const getAvailableEC2RegionEndpoints = async (client: EC2Client) => {
-    return Array.from(await describeRegions(client), region => region.Endpoint)
+    let data = await describeRegions(client, {AllRegions: true})
+    return Array.from(data.Regions, region => region.Endpoint)
 }
 
 export { getEC2Client, describeRegions, getAvailableRegions, getAvailableEC2RegionEndpoints }

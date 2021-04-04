@@ -37,8 +37,6 @@ describe('EC2 Utilities Module', () => {
     beforeAll(() => {
         mockEC2 = mockClient(EC2Client)
         mockEC2
-            .on(DescribeRegionsCommand, {AllRegions: true})
-            .resolves(Array.from(mockResponse.Regions, region => region.RegionName))
             .on(DescribeRegionsCommand)
             .resolves(mockResponse)
         mockedClient = new EC2Client({})
@@ -50,26 +48,26 @@ describe('EC2 Utilities Module', () => {
     })
 
     describe('describeRegions', () => { 
-        test('returns an array of regions info', async () => {
+        test('returns an object containing region information', async () => {
             sut = await describeRegions(mockedClient)
-            expect(sut).toHaveLength(3)
-            expect(sut).toStrictEqual(expect.any(Array))
+            expect(sut.Regions).toHaveLength(3)
+            expect(sut).toStrictEqual(expect.any(Object))
         })
     
-        test('returns an correct region info', async () => {
+        test('returns correct array of region info', async () => {
             sut = await describeRegions(mockedClient)
             let expectedOne   = mockResponse.Regions[0]
             let expectedTwo   = mockResponse.Regions[1]
             let expectedThree = mockResponse.Regions[2]
-            expect(sut).toContain(expectedOne)
-            expect(sut).toContain(expectedTwo)
-            expect(sut).toContain(expectedThree)
+            expect(sut.Regions).toContain(expectedOne)
+            expect(sut.Regions).toContain(expectedTwo)
+            expect(sut.Regions).toContain(expectedThree)
         })
 
         test('returns names with params set', async () => {
             sut = await describeRegions(mockedClient, {AllRegions: true})
-            expect(sut).toHaveLength(3)
-            expect(sut).toStrictEqual(expect.any(Array))
+            expect(sut.Regions).toHaveLength(3)
+            expect(sut.Regions).toStrictEqual(expect.any(Array))
         })
     })
     
