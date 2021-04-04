@@ -46,20 +46,4 @@ const getAvailableRegions = async (client: EC2Client) => {
     return Array.from(await describeRegions(client), region => region.Endpoint)
 }
 
-// (
-//     async () => {
-//         try {
-//             let client = await getEC2Client('eu-west-2')
-//             let regions = await describeRegions(client)
-//             console.log(regions)
-//             let regionNames = await getAvailableRegions(client)
-//             console.log(regionNames)
-//             let regionEndpoints = await getAvailableEC2RegionEndpoints(client)
-//             console.log(regionEndpoints)
-//         } catch (e) {
-//             console.log(e)
-//         }
-//     }
-// )()
-
 export { getEC2Client, describeRegions, getAvailableRegions, getAvailableEC2RegionEndpoints }

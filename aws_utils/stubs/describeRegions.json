@@ -1,0 +1,22 @@
+{
+    "$metadata": {
+        "test": "test value"
+    },
+    "Regions": [
+        {
+            "RegionName": "this-test-1",
+            "Endpoint": "ec2.this-test-1.amazon.aws.com",
+            "OptInStatus": "opt-in-not-required"
+        },
+        {
+            "RegionName": "this-test-2",
+            "Endpoint": "ec2.this-test-2.amazon.aws.com",
+            "OptInStatus": "opted-in" 
+        },
+        {
+            "RegionName": "this-test-3",
+            "Endpoint": "ec2.this-test-3.amazon.aws.com",
+            "OptInStatus": "not-opted-in" 
+        }
+    ]
+}
