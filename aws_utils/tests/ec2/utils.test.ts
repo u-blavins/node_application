@@ -27,11 +27,20 @@ describe('EC2 Utilities Module', () => {
             expect(await sut.config.region()).toEqual('eu-west-2')
         })
 
+        test('client returned is an EC2Client', async () => {
+            sut = await getEC2Client()
+            expect(sut).toEqual(expect.any(EC2Client))
+        })
+
     })
     
     beforeAll(() => {
         mockEC2 = mockClient(EC2Client)
-        mockEC2.on(DescribeRegionsCommand).resolves(mockResponse)
+        mockEC2
+            .on(DescribeRegionsCommand, {AllRegions: true})
+            .resolves(Array.from(mockResponse.Regions, region => region.RegionName))
+            .on(DescribeRegionsCommand)
+            .resolves(mockResponse)
         mockedClient = new EC2Client({})
     })
 
@@ -55,6 +64,12 @@ describe('EC2 Utilities Module', () => {
             expect(sut).toContain(expectedOne)
             expect(sut).toContain(expectedTwo)
             expect(sut).toContain(expectedThree)
+        })
+
+        test('returns names with params set', async () => {
+            sut = await describeRegions(mockedClient, {AllRegions: true})
+            expect(sut).toHaveLength(3)
+            expect(sut).toStrictEqual(expect.any(Array))
         })
     })
     
