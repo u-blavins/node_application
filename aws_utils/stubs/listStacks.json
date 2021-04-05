@@ -1,0 +1,19 @@
+{
+    "NextToken": "some-token",
+    "StackSummaries": [
+        {
+            "CreationDate": "2012-04-23T18:25:43.511Z",
+            "LastUpdatedTime": "2012-04-23T20:25:43.511Z",
+            "StackId": "arn:aws:cloudformation:eu-west-2:123456789012:stack/test-stack-1/test",
+            "StackName": "test-stack-1",
+            "StackStatus": "UPDATE_COMPLETE"
+        },
+        {
+            "CreationDate": "2012-04-23T18:25:43.511Z",
+            "DeletionDate": "2012-04-23T20:25:43.511Z",
+            "StackId": "arn:aws:cloudformation:eu-west-2:123456789012:stack/test-stack-2/test",
+            "StackName": "test-stack-2",
+            "StackStatus": "DELETE_COMPLETE"
+        }
+    ]
+}

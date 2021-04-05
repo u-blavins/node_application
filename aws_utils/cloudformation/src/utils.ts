@@ -1,4 +1,4 @@
-import { CloudFormationClient } from '@aws-sdk/client-cloudformation'
+import { CloudFormationClient, ListStacksCommand } from '@aws-sdk/client-cloudformation'
 
 /**
  * Create a cloudformation client with specified region
@@ -10,4 +10,15 @@ import { CloudFormationClient } from '@aws-sdk/client-cloudformation'
     return new CloudFormationClient({ region })
 }
 
-export { getCloudformationClient }
+/**
+ * List all the stacks within a specific region based on region
+ * 
+ * @param client CloudFormation client for AWS SDk
+ * @param params ListStacksCommandInput parameters
+ * @returns Promise for all stacks within region
+ */
+ const listAllStacks = async (client, params = {}) => {
+    return client.send(new ListStacksCommand(params))
+}
+
+export { getCloudformationClient, listAllStacks }

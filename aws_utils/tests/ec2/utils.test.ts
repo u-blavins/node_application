@@ -15,6 +15,19 @@ describe('EC2 Utilities Module', () => {
     afterEach(() => {
         sut = null
     })
+    
+    beforeAll(() => {
+        mockEC2 = mockClient(EC2Client)
+        mockEC2
+            .on(DescribeRegionsCommand)
+            .resolves(mockResponse)
+        mockedClient = new EC2Client({})
+    })
+
+    afterAll(() => {
+        mockEC2.reset()
+        mockedClient.destroy()
+    })
 
     describe('getEC2Client', () => {
         test('client is instantiated with correct region', async () => {
@@ -32,19 +45,6 @@ describe('EC2 Utilities Module', () => {
             expect(sut).toEqual(expect.any(EC2Client))
         })
 
-    })
-    
-    beforeAll(() => {
-        mockEC2 = mockClient(EC2Client)
-        mockEC2
-            .on(DescribeRegionsCommand)
-            .resolves(mockResponse)
-        mockedClient = new EC2Client({})
-    })
-
-    afterAll(() => {
-        mockEC2.reset()
-        mockedClient.destroy()
     })
 
     describe('describeRegions', () => { 
