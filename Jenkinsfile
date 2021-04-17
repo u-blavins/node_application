@@ -1,12 +1,20 @@
-pipeline {
-    // instruct Jenkins to allocate an executor on any node
+
+// A machine that executes an entire workflow
+node {
     agent any
-    // set the pipeline stages
+    // Setting stages within workflow
     stages {
-        stage('Stage 1') {
-            steps {
-                echo 'Hello World!'
-            }
+        stage('Checkout SCM') {
+            checkout scm
+        }
+
+        stage('Build') {
+            echo 'Building Stage ...'
+            sh "ls"
+        }
+
+        stage('Finish') {
+            echo 'Finish pipeline'
         }
     }
 }
