@@ -1,7 +1,6 @@
 
 // A machine that executes an entire workflow
 node {
-    agent any
     // Setting stages within workflow
     stages {
         stage('Checkout SCM') {
